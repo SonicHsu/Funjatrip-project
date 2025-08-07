@@ -1,18 +1,22 @@
-import Header from './components/Header';
-
+import Header from "./components/Header";
+import HeroSection from "./components/HeroSection";
 
 function App() {
   return (
     <>
-      <Header />
-      {/* <main>
-        <HeroSection />
-        <DestinationsSection />
+      <div className="max-w-screen">
+        <Header />
+        <main>
+          <HeroSection />
+
+          {/* <DestinationsSection />
         <SchoolsSection />
         <ToursSection />
-        <AboutSection />
-      </main>
-      <Footer /> */}
+        <AboutSection /> */}
+        </main>
+        {/* <Footer /> */}
+      </div>
+
     </>
   );
 }

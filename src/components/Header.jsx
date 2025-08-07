@@ -8,7 +8,7 @@ export default function Header() {
   const [activeDropdown, setActiveDropdown] = useState(null);
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-md">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 shadow-md">
       <nav className=" mx-auto  h-20 flex items-center w-[80%] ">
         {/* Logo */}
         <div className="flex items-center space-x-4 w-[50%]">
@@ -18,7 +18,7 @@ export default function Header() {
             className="h-[60px] w-auto"
           />
 
-          <div className="flex-1 px-6">
+          <div className="flex-1 px-6 h-12">
             <SearchBar />
           </div>
         </div>
