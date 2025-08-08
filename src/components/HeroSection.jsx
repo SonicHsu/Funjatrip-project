@@ -1,4 +1,8 @@
 import SearchBar from "./SearchBar";
+import ExploreButton from "./ExploreButton";
+
+import btnIcon1 from "../assets/images/index/btn_icon1.svg";
+import btnIcon2 from "../assets/images/index/btn_icon2.svg";
 
 export default function HeroSection() {
   return (
@@ -13,9 +17,9 @@ export default function HeroSection() {
           height: "80vh",
         }}
       >
-        <div className="h-full  flex flex-col items-center justify-center space-y-2">
+        <div className="h-full  flex flex-col items-center justify-center space-y-4">
           <h1
-            className="text-5xl text-white font-bold"
+            className="text-5xl text-white font-medium"
             style={{ textShadow: "2px 2px  rgba(0,0,0,0.5)" }}
           >
             放假，給孩子一個有趣的假期
@@ -28,7 +32,10 @@ export default function HeroSection() {
         
       </div>
 
-      <div className="bg-amber-500 h-[148px] w-full"></div>
+      <div className=" h-[148px] w-full flex justify-center items-center space-x-12">
+         <ExploreButton iconImage={btnIcon1} />
+         <ExploreButton iconImage={btnIcon2} />
+      </div>
     </section>
   );
 }
