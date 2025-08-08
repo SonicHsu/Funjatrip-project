@@ -7,10 +7,10 @@ export default function NavButton({
   id,
   activeDropdown,
   setActiveDropdown,
-  options
+  options,
 }) {
   const isOpen = isSelect && activeDropdown === id;
-    const ref = useRef(null); // 參考本組件DOM
+  const ref = useRef(null); // 參考本組件DOM
 
   const handleClick = useCallback(() => {
     if (!isSelect) return;
@@ -33,9 +33,8 @@ export default function NavButton({
     };
   }, [isOpen, setActiveDropdown]);
 
-
   return (
-    <li  ref={ref} className="flex items-center relative">
+    <li ref={ref} className="flex items-center relative">
       <a
         href="#hero"
         onClick={handleClick}
@@ -62,15 +61,17 @@ export default function NavButton({
       )}
 
       {isOpen && (
-        <div className="absolute top-full left-0 mt-1 w-[118px] bg-white border border-gray-200 rounded shadow-lg">
+        <div className="absolute top-full left-0 mt-1 w-[130px] bg-white border border-gray-200 rounded-lg shadow-lg flex flex-col justify-center items-center py-2 text-sm text-stone-500 font-normal px-2">
           {options.map((item, idx) => (
-            <div key={idx} className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+            <div
+              key={idx}
+              className="px-4 py-2 hover:bg-amber-400 w-full cursor-pointer rounded-full text-center"
+            >
               {item}
             </div>
           ))}
         </div>
       )}
-
     </li>
   );
 }

@@ -12,18 +12,13 @@ export default function Header() {
       <nav className=" mx-auto  h-20 flex items-center w-[80%] ">
         {/* Logo */}
         <div className="flex items-center space-x-4 w-[50%]">
-          <img
-            src={navLogo} // 若用 public 資料夾圖片
-            alt="FunjaTrip Logo"
-            className="h-[60px] w-auto"
-          />
+          <img src={navLogo} alt="FunjaTrip Logo" className="h-[60px] w-auto" />
 
           <div className="flex-1 px-6 h-12">
             <SearchBar />
           </div>
         </div>
 
-        {/* 導覽連結（桌機版） */}
         <ul className="ml-auto flex  text-gray-700 font-medium">
           <div className="pr-4">
             <NavButton
@@ -33,7 +28,7 @@ export default function Header() {
               id="currency"
               activeDropdown={activeDropdown}
               setActiveDropdown={setActiveDropdown}
-               options={['人民幣', '美金', '新台幣']}
+              options={["人民幣CNY", "美金USD", "新台幣NT"]}
             />
           </div>
 
@@ -45,7 +40,7 @@ export default function Header() {
               id="language"
               activeDropdown={activeDropdown}
               setActiveDropdown={setActiveDropdown}
-              options={['繁體中文', '簡體中文']}
+              options={["簡體中文", "繁體中文"]}
             />
           </div>
 

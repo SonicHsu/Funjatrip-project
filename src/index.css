@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import '@fontsource-variable/noto-sans-tc/index.css';
 
+
 @theme {
   --font-sans: 'Noto Sans TC Variable', sans-serif;
+  
 }
