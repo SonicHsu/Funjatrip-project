@@ -14,7 +14,7 @@ export default function HeroSection() {
             "url('https://jgdev.jgallop.com/funjatrip/images/frontpage/blocks/201901011000412790.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          height: "80vh",
+          height: "88vh",
         }}
       >
         <div className="h-full  flex flex-col items-center justify-center space-y-4">

@@ -1,5 +1,8 @@
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
+import DestinationsSection from "./components/DestinationsSection";
+import SchoolsSection from "./components/SchoolsSection";
+import ToursSection from "./components/ToursSection";
 
 function App() {
   return (
@@ -9,14 +12,13 @@ function App() {
         <main>
           <HeroSection />
 
-          {/* <DestinationsSection />
-        <SchoolsSection />
-        <ToursSection />
-        <AboutSection /> */}
+          <DestinationsSection />
+          <SchoolsSection />
+          <ToursSection />
+        {/* <AboutSection /> */}
         </main>
         {/* <Footer /> */}
       </div>
-
     </>
   );
 }
