@@ -3,6 +3,8 @@ import HeroSection from "./components/HeroSection";
 import DestinationsSection from "./components/DestinationsSection";
 import SchoolsSection from "./components/SchoolsSection";
 import ToursSection from "./components/ToursSection";
+import AboutSection from "./components/AboutSection";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -15,9 +17,9 @@ function App() {
           <DestinationsSection />
           <SchoolsSection />
           <ToursSection />
-        {/* <AboutSection /> */}
+        <AboutSection />
         </main>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   );

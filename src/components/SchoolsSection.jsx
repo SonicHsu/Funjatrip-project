@@ -1,3 +1,5 @@
+import SchoolButton from "./SchoolButton";
+
 export default function SchoolsSection() {
   return (
     <section className="mt-16">
@@ -52,6 +54,15 @@ export default function SchoolsSection() {
             </div>
           </div>
         </div>
+
+        <div className="w-[1126px] h-[110px] mt-8 flex justify-between">
+            <SchoolButton />
+            <SchoolButton />
+            <SchoolButton />
+            <SchoolButton />
+
+        </div>
+
       </div>
     </section>
   );
