@@ -5,23 +5,34 @@ import SchoolsSection from "./components/SchoolsSection";
 import ToursSection from "./components/ToursSection";
 import AboutSection from "./components/AboutSection";
 import Footer from "./components/Footer";
+import LoadingSpinner from "./components/LoadingSpinner";
 
-import useMainPageData from "./hooks/useMainPageData";
+import useMainPageDataParsed from "./hooks/useMainPageDataParsed";
 
 function App() {
-  const { data, loading, error } = useMainPageData();
 
-  console.log("data:", data); // 看 data 內容
-  console.log("loading:", loading);
-  console.log("error:", error);
+    const {
+    loading,
+    error,
+    homeMainBlock,
+    areaBlocks,
+    schoolBlocks,
+    tripBlocks,
+    textBlocks,
+  } = useMainPageDataParsed();
+
+  if (loading) return <LoadingSpinner />;
+
+  if (error) return <p className="text-center text-red-500 mt-10">發生錯誤: {error.message}</p>;
+
   return (
     <>
       <div className="max-w-screen">
         <Header />
         <main>
-          <HeroSection />
+          <HeroSection block={homeMainBlock} />
 
-          <DestinationsSection />
+          <DestinationsSection block={areaBlocks}/>
           <SchoolsSection />
           <ToursSection />
           <AboutSection />

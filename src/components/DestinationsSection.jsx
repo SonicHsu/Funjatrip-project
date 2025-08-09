@@ -7,7 +7,27 @@ import hotballonY from "../assets/images/index/hotballon_y.svg";
 import hotballonG from "../assets/images/index/hotballon_g.svg";
 import hotballonR from "../assets/images/index/hotballon_r.svg";
 
-export default function DestinationsSection() {
+export default function DestinationsSection({block}) {
+  if (!block) return null;
+
+const baseUrl = "https://jgdev.jgallop.com/funjatrip/images/";
+
+const bgImageUrl = block.blockPhotoPath && block.blockPhotoName
+  ? `${baseUrl}${block.blockPhotoPath}/${block.blockPhotoName}`
+  : "";
+
+
+
+   const area1 = block.areaList[0];
+  const area2 = block.areaList[1];
+  const area3 = block.areaList[2];
+  const area4 = block.areaList[3];
+  const area5 = block.areaList[3];
+  const area6 = block.areaList[4];
+  const area7 = block.areaList[5];
+  const area8 = block.areaList[6]
+
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const containerWidth = 1280; // 單組寬度
@@ -20,15 +40,15 @@ export default function DestinationsSection() {
   return (
     <section className="mt-8 ">
       <div className=" py-8 flex flex-col items-center justify-center space-y-3">
-        <h2 className="text-4xl font-medium">各國遊學趣</h2>
-        <p>各國有很多知名學校，給你不同的體驗</p>
+        <h2 className="text-4xl font-medium">{block.mainTitle}</h2>
+        <p>{block.subTitle}</p>
       </div>
 
       <div
         className="w-[1280px] h-[560px]  mx-auto overflow-hidden"
         style={{
           backgroundImage:
-            "url('https://jgdev.jgallop.com/funjatrip/images/frontpage/blocks/20190430054453840.jpg')",
+           `url('${bgImageUrl}')`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -49,6 +69,7 @@ export default function DestinationsSection() {
               iconHotballon03={hotballonR}
               HotballonStyle="1"
               buttonStyle="down"
+              areaData={area1}
             />
             <DestinationsButton
               iconHotballon01={hotballonY}
@@ -56,12 +77,14 @@ export default function DestinationsSection() {
               iconHotballon03={hotballonR}
               HotballonStyle="2"
               buttonStyle="up"
+              areaData={area2}
             />
             <DestinationsButton
               iconHotballon01={hotballonR}
               iconHotballon02={hotballonY}
               HotballonStyle="3"
               buttonStyle="down"
+              areaData={area3}
             />
             <DestinationsButton
               iconHotballon01={hotballonG}
@@ -69,6 +92,7 @@ export default function DestinationsSection() {
               iconHotballon03={hotballonY}
               HotballonStyle="4"
               buttonStyle="up"
+              areaData={area4}
             />
           </div>
 
@@ -79,6 +103,7 @@ export default function DestinationsSection() {
               iconHotballon03={hotballonR}
               HotballonStyle="1"
               buttonStyle="down"
+              areaData={area5}
             />
             <DestinationsButton
               iconHotballon01={hotballonY}
@@ -86,12 +111,14 @@ export default function DestinationsSection() {
               iconHotballon03={hotballonR}
               HotballonStyle="2"
               buttonStyle="up"
+              areaData={area6}
             />
             <DestinationsButton
               iconHotballon01={hotballonR}
               iconHotballon02={hotballonY}
               HotballonStyle="3"
               buttonStyle="down"
+              areaData={area7}
             />
             <DestinationsButton
               iconHotballon01={hotballonG}
@@ -99,6 +126,7 @@ export default function DestinationsSection() {
               iconHotballon03={hotballonY}
               HotballonStyle="4"
               buttonStyle="up"
+              areaData={area8}
             />
           </div>
         </div>

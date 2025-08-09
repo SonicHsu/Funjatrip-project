@@ -4,22 +4,38 @@ export default function DestinationsButton({
   iconHotballon03,
   HotballonStyle,
   buttonStyle,
+  areaData,
 }) {
+
+  const bgPhoto =
+    areaData.photoList && areaData.photoList.length > 0 ? areaData.photoList[0] : null;
+
+  const baseUrl = "https://jgdev.jgallop.com/funjatrip/images/";
+
+  const bgImageUrl = bgPhoto
+    ? `${baseUrl}${bgPhoto.photoPath}/${bgPhoto.photoName}`
+    : "";
+
+  console.log(bgImageUrl)
+
+
   const alignmentClass =
     buttonStyle === "up"
       ? "items-center transform -translate-y-10" // 往上推 40px (1rem = 4px, 10*4=40px)
       : "items-end";
 
+
+
   return (
     <div className={`w-[288px] h-full  flex justify-center py-2 ${alignmentClass}` }>
       <button className="w-[250px] h-[250px]  rounded-full flex items-center relative cursor-pointer">
         <img
-          src="https://jgdev.jgallop.com/funjatrip/images/frontpage/america.jpg"
-          alt="美國"
+          src={bgImageUrl}
+          alt={areaData.areaName}
           className="w-full h-full object-cover rounded-full brightness-40"
         />
         <span className="absolute inset-0 flex items-center justify-center text-white  text-3xl font-medium">
-          美國
+          {areaData.areaName}
         </span>
 
         <div className="absolute -translate-x-1/2  left-1/2 bottom-full translate-y-[50%] z-10">
@@ -29,7 +45,7 @@ export default function DestinationsButton({
             className="w-[72px] h-auto"
           />
           <div className="absolute inset-0 flex flex-col items-centerr justify-start text-white text-base mt-2">
-            <span className="text-4xl font-bold">13</span>
+            <span className="text-4xl font-bold">{areaData.travelCount}</span>
             <span>課程</span>
           </div>
         </div>

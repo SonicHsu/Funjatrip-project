@@ -18,28 +18,44 @@ function base64DecodeUnicode(str) {
 }
 
 export default function useMainPageData() {
-  const [data, setData] = useState([]); 
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await axios.post(
-          "https://jgdev.jgallop.com/funjatrip/api/mainPage",
-          {
-            language: "zh-TW",
-            currency: "TWD",
-          }
-        );
-        const jsonObj = base64DecodeUnicode(res.data);
+        // 加入繁體中文語系參數
+        const requestData = {
+          langcode: "zh-TW", // 繁體中文
+          currency: "TWD"       // 首次使用空字串，讓後端回傳預設值
+        };
 
+        const res = await axios.post(
+          "https://jgdev.jgallop.com/funjatrip/api/mainPage", 
+          requestData
+        );
+        
+        const jsonObj = base64DecodeUnicode(res.data);
+        console.log("API 回傳完整資料:", jsonObj);
+        console.log(jsonObj.langcode)
+        console.log("發送:", requestData);
+        console.log("瀏覽器語言:", navigator.language);
+        
         if (
           jsonObj &&
           jsonObj.rtCode === "S00" &&
           Array.isArray(jsonObj.rtData?.blocks)
         ) {
           setData(jsonObj.rtData.blocks);
+          
+          // 如果需要將語系和幣別儲存到 session
+          if (typeof window !== 'undefined') {
+            sessionStorage.setItem('langcode', 'zh-TW');
+            if (jsonObj.currency) {
+              sessionStorage.setItem('currency', jsonObj.currency);
+            }
+          }
         } else {
           setError(new Error("API 回傳格式錯誤或失敗"));
           setData([]);

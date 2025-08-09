@@ -4,14 +4,26 @@ import ExploreButton from "./ExploreButton";
 import btnIcon1 from "../assets/images/index/btn_icon1.svg";
 import btnIcon2 from "../assets/images/index/btn_icon2.svg";
 
-export default function HeroSection() {
+export default function HeroSection({block}) {
+
+if (!block) return null;
+
+const bgPhoto =
+    block.photoList && block.photoList.length > 0 ? block.photoList[0] : null;
+
+  const baseUrl = "https://jgdev.jgallop.com/funjatrip/images/";
+
+  const bgImageUrl = bgPhoto
+    ? `${baseUrl}${bgPhoto.blockPhotoPath}/${bgPhoto.blockPhotoName}`
+    : "";
+
   return (
     <section>
       <div
         className="flex justify-center"
         style={{
           backgroundImage:
-            "url('https://jgdev.jgallop.com/funjatrip/images/frontpage/blocks/201901011000412790.jpg')",
+           `url('${bgImageUrl}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           height: "88vh",
@@ -22,7 +34,7 @@ export default function HeroSection() {
             className="text-5xl text-white font-medium"
             style={{ textShadow: "2px 2px  rgba(0,0,0,0.5)" }}
           >
-            放假，給孩子一個有趣的假期
+            {block.mainTitle}
           </h1>
           <div className="w-[540px] h-[60px]">
             <SearchBar />
