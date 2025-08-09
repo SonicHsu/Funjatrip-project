@@ -1,11 +1,16 @@
-export default function SchoolButton() {
+export default function SchoolButton({ photoUrl, onClick, schoolName }) {
     return(
-        <button className="w-[268px] h-full cursor-pointer">
+        <button  onClick={onClick} className="w-[268px] h-full cursor-pointer relative">
           <img
-            src="https://jgdev.jgallop.com/funjatrip/images/frontpage/school/201903060303486710.jpg"
-            alt="美國"
-            className="w-full h-full object-cover "
+            src={photoUrl}
+            alt="thumb"
+            className="w-full h-full object-cover brightness-50"
+            draggable={false} 
           />
+
+          <p className="absolute inset-0 flex flex-col items-center justify-center text-white">{schoolName}</p>
+
+
 
         </button>
     )

@@ -16,9 +16,6 @@ export default function DestinationsButton({
     ? `${baseUrl}${bgPhoto.photoPath}/${bgPhoto.photoName}`
     : "";
 
-  console.log(bgImageUrl)
-
-
   const alignmentClass =
     buttonStyle === "up"
       ? "items-center transform -translate-y-10" // 往上推 40px (1rem = 4px, 10*4=40px)

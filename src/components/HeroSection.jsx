@@ -45,8 +45,8 @@ const bgPhoto =
       </div>
 
       <div className=" h-[148px] w-full flex justify-center items-center space-x-12">
-         <ExploreButton iconImage={btnIcon1} />
-         <ExploreButton iconImage={btnIcon2} />
+         <ExploreButton icon={btnIcon1} title="我想自由行" subtitle="只想專心參加國際學校課程" />
+         <ExploreButton icon={btnIcon2} title="我想跟團" subtitle="上課+跟團旅遊，世界那麼大都想去看看"/>
       </div>
     </section>
   );

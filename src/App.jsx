@@ -33,7 +33,7 @@ function App() {
           <HeroSection block={homeMainBlock} />
 
           <DestinationsSection block={areaBlocks}/>
-          <SchoolsSection />
+          <SchoolsSection block={schoolBlocks} />
           <ToursSection />
           <AboutSection />
         </main>

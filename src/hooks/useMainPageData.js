@@ -37,10 +37,7 @@ export default function useMainPageData() {
         );
         
         const jsonObj = base64DecodeUnicode(res.data);
-        console.log("API 回傳完整資料:", jsonObj);
-        console.log(jsonObj.langcode)
-        console.log("發送:", requestData);
-        console.log("瀏覽器語言:", navigator.language);
+
         
         if (
           jsonObj &&
