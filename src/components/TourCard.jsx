@@ -2,12 +2,29 @@ import assistantPhoto from "../assets/images/index/assistant_photo.png";
 import like from "../assets/images/index/like.svg";
 import star from "../assets/images/index/star.svg";
 
-export default function TourCard() {
+export default function TourCard({ tourItem }) {
+
+    if (!tourItem) {
+    return <div className="w-[354px] h-[534px] invisible"></div>;
+  }
+
+
+  const bgPhoto =
+    tourItem.photoList && tourItem.photoList.length > 0
+      ? tourItem.photoList[0]
+      : null;
+
+  const baseUrl = "https://jgdev.jgallop.com/funjatrip/images/";
+
+  const bgImageUrl = bgPhoto
+    ? `${baseUrl}${bgPhoto.photoPath}/${bgPhoto.photoName}`
+    : "";
+
   return (
     <div className="w-[354px] h-auto flex flex-col">
       <img
-        src="https://jgdev.jgallop.com/funjatrip/images/frontpage/travel/ts_201904230750346770.jpg"
-        alt="美國"
+        src={bgImageUrl}
+        alt={tourItem.areaList[0].areaName}
         className="w-full h-[260px] object-cover "
       />
 
@@ -28,14 +45,15 @@ export default function TourCard() {
             </svg>
 
             <span className=" px-2 py-1 text-gray-400">
-              英國 雅士谷 英國阿斯科特
+              {tourItem.areaList[0].areaName}{" "}
+              {tourItem.areaList[0].cityList[0].cityName}
             </span>
           </div>
         </div>
 
         <div className="h-[90px] mt-3">
           <h4 className="text-xl">
-            米爾菲爾德英語夏令營 2018 (斯特里特營區)(11501天)
+            {tourItem.travelName}({tourItem.minDays}天)
           </h4>
         </div>
 
@@ -48,28 +66,34 @@ export default function TourCard() {
                 className="w-[20px] h-auto"
               />
               <span>
-                0<small>人已去過</small>
+                {tourItem.joinCount}
+                <small>人已去過</small>
               </span>
             </div>
 
             <div className="flex gap-2">
               <img src={like} alt="like" className="w-[24px] h-auto" />
               <span>
-                0<small>人已去過</small>
+                {tourItem.favoriteCount}
+                <small>人有興趣</small>
               </span>
             </div>
           </div>
 
-          <div className="flex gap-2">
-            <img src={star} alt="star" className="w-[24px] h-auto" />
-            <span>
-              0<small>人已去過</small>
-            </span>
-          </div>
+          {tourItem.starPeopleCount > 0 ? (
+            <div className="flex gap-2">
+              <img src={star} alt="star" className="w-[24px] h-auto" />
+              <span>{tourItem.starPeopleCount}</span>
+            </div>
+          ) : (
+            <div className=" w-[24px] h-[24px]"></div>
+          )}
 
           <div className="w-full flex justify-end space-x-0.5 items-end">
             <span>CNY</span>
-            <span className="text-red-400 text-xl font-bold">32000</span>
+            <span className="text-red-400 text-xl font-bold">
+              {tourItem.minPrice}
+            </span>
             <span>起</span>
           </div>
         </div>
