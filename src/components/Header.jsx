@@ -4,19 +4,26 @@ import SearchBar from "./SearchBar";
 
 import navLogo from "../assets/images/index/nav_Logo.svg";
 
-export default function Header() {
+export default function Header({searchVisible}) {
   const [activeDropdown, setActiveDropdown] = useState(null);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 shadow-md">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 
+    ${
+     searchVisible
+        ? 
+        "h-[250px] bg-gradient-to-b from-white to-transparent" : "bg-white h-20 shadow-lg"
+    }`}
+    >
       <nav className=" mx-auto  h-20 flex items-center w-[80%] ">
         {/* Logo */}
         <div className="flex items-center space-x-4 w-[50%]">
           <img src={navLogo} alt="FunjaTrip Logo" className="h-[60px] w-auto" />
 
-          <div className="flex-1 px-6 h-12">
+          {!searchVisible && <div className="flex-1 px-6 h-12">
             <SearchBar />
-          </div>
+          </div>}
         </div>
 
         <ul className="ml-auto flex  text-gray-700 font-medium">

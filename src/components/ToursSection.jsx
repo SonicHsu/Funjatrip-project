@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import TourCard from "./TourCard";
 import SwitcherButton from "./SwitcherButton";
 import ArrowLeft from "../ui/ArrowLeft";
@@ -9,24 +8,19 @@ export default function ToursSection({ block }) {
   if (!block) return null;
 
   const toursData = block.travelList;
-
   const itemsPerPage = 6;
   const totalPages = Math.ceil(toursData.length / itemsPerPage);
+  const [currentPage, setCurrentPage] = useState(0);
 
-  const [currentPage, setCurrentPage] = useState(0); // 0-based index
-
-  // 計算當前頁要顯示的資料
-  const startIndex = currentPage * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  let currentData = toursData.slice(startIndex, endIndex);
-
-  // 補空卡片，保持6格
-  if (currentData.length < itemsPerPage) {
-    const emptySlots = itemsPerPage - currentData.length;
-    currentData = [
-      ...currentData,
-      ...Array.from({ length: emptySlots }, () => null),
-    ];
+  // 把資料切成每頁陣列
+  const pages = [];
+  for (let i = 0; i < totalPages; i++) {
+    let pageData = toursData.slice(i * itemsPerPage, (i + 1) * itemsPerPage);
+    if (pageData.length < itemsPerPage) {
+      const emptySlots = itemsPerPage - pageData.length;
+      pageData = [...pageData, ...Array.from({ length: emptySlots }, () => null)];
+    }
+    pages.push(pageData);
   }
 
   const goPrev = () => {
@@ -39,23 +33,35 @@ export default function ToursSection({ block }) {
 
   return (
     <section className="mt-20">
-      <div className=" py-8 flex flex-col items-center justify-center space-y-3">
+      <div className="py-8 flex flex-col items-center justify-center space-y-3">
         <h2 className="text-4xl font-medium">{block.mainTitle}</h2>
         <p>{block.subTitle}</p>
       </div>
 
       <div className="w-[1126px] h-auto mx-auto relative">
+        {/* 外層裁切 */}
         <div className="w-full overflow-hidden">
-          <div className="grid grid-cols-3 gap-4">
-            {currentData.map((tourItem, idx) =>
-              tourItem ? (
-                <TourCard key={idx} tourItem={tourItem} />
-              ) : (
-                <div key={idx} className="invisible">
-                  <TourCard  />
-                </div>
-              )
-            )}
+          {/* 內層橫向排列，平移切換 */}
+          <div
+            className="flex transition-transform duration-500 ease-in-out"
+            style={{ transform: `translateX(-${currentPage * 100}%)` }}
+          >
+            {pages.map((page, pageIndex) => (
+              <div
+                key={pageIndex}
+                className="grid grid-cols-3 gap-4 flex-shrink-0 w-full"
+              >
+                {page.map((tourItem, idx) =>
+                  tourItem ? (
+                    <TourCard key={idx} tourItem={tourItem} />
+                  ) : (
+                    <div key={idx} className="invisible">
+                      <TourCard />
+                    </div>
+                  )
+                )}
+              </div>
+            ))}
           </div>
         </div>
 
@@ -75,6 +81,7 @@ export default function ToursSection({ block }) {
           <ArrowRight />
         </div>
 
+        {/* 分頁按鈕 */}
         <div className="h-auto w-full bg-white flex items-center justify-center py-2 space-x-3">
           {Array.from({ length: totalPages }).map((_, idx) => (
             <SwitcherButton

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import DestinationsSection from "./components/DestinationsSection";
@@ -10,6 +12,7 @@ import LoadingSpinner from "./components/LoadingSpinner";
 import useMainPageDataParsed from "./hooks/useMainPageDataParsed";
 
 function App() {
+    const [isSearchVisible, setIsSearchVisible] = useState(true);
 
     const {
     loading,
@@ -25,12 +28,14 @@ function App() {
 
   if (error) return <p className="text-center text-red-500 mt-10">發生錯誤: {error.message}</p>;
 
+
+
   return (
     <>
       <div className="max-w-screen">
-        <Header />
+        <Header searchVisible={isSearchVisible} />
         <main>
-          <HeroSection block={homeMainBlock} />
+          <HeroSection block={homeMainBlock} onSearchVisibilityChange={setIsSearchVisible} />
 
           <DestinationsSection block={areaBlocks}/>
           <SchoolsSection block={schoolBlocks} />
