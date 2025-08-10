@@ -35,7 +35,7 @@ function App() {
           <DestinationsSection block={areaBlocks}/>
           <SchoolsSection block={schoolBlocks} />
           <ToursSection />
-          <AboutSection />
+          <AboutSection block={textBlocks} />
         </main>
         <Footer />
       </div>

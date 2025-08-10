@@ -25,7 +25,6 @@ export default function useMainPageData() {
   useEffect(() => {
     async function fetchData() {
       try {
-        // 加入繁體中文語系參數
         const requestData = {
           langcode: "zh-TW", // 繁體中文
           currency: "TWD"       // 首次使用空字串，讓後端回傳預設值
@@ -38,6 +37,8 @@ export default function useMainPageData() {
         
         const jsonObj = base64DecodeUnicode(res.data);
 
+        console.log(jsonObj)
+
         
         if (
           jsonObj &&
@@ -46,7 +47,6 @@ export default function useMainPageData() {
         ) {
           setData(jsonObj.rtData.blocks);
           
-          // 如果需要將語系和幣別儲存到 session
           if (typeof window !== 'undefined') {
             sessionStorage.setItem('langcode', 'zh-TW');
             if (jsonObj.currency) {

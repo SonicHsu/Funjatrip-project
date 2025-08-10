@@ -6,7 +6,7 @@ export default function SchoolMainImage({ photoUrl, school, }) {
       <img
         src={photoUrl}
         alt={school.schoolName}
-        className="w-full h-full object-cover brightness-80"
+        className="w-full h-full object-cover brightness-80 cursor-pointer"
         draggable={false}
       />
 
